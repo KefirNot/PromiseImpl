@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <script src="./promise.js"></script>
+
+    <script type="text/javascript">
+        console.log('---===Promise===---')
+
+        var foo = new Promise(function (resolve, reject) {
+            resolve(123);
+        });
+
+        foo.then(function (val) {
+            console.log("Promise foo.resolved:", val === 123);
+        }, function () {
+            console.log("Promise foo.resolved: fail");
+        });
+
+
+        // -----------
+        var bar = new Promise(function (resolve, reject) {
+            setTimeout(resolve.bind(null, "fail"), 300);
+            setTimeout(reject.bind(null, "ok"), 200);
+        });
+
+        bar.then(function () {
+            console.log("Promise bar.rejected: fail");
+        }, function (val) {
+            console.log("Promise bar.rejected:", val === "ok");
+        });
+    </script>
+
+    <script type="text/javascript">
+        console.log('---===PromiseImpl===---')
+
+        var foo = new PromiseImpl(function (resolve, reject) {
+            resolve(123);
+        });
+
+        foo.then(function (val) {
+            console.log("PromiseImpl foo.resolved:", val === 123);
+        }, function () {
+            console.log("PromiseImpl foo.resolved: fail");
+        });
+
+
+        // -----------
+        var bar = new PromiseImpl(function (resolve, reject) {
+            setTimeout(resolve.bind(null, "fail"), 300);
+            setTimeout(reject.bind(null, "ok"), 200);
+        });
+
+        bar.then(function () {
+            console.log("PromiseImpl bar.rejected: fail");
+        }, function (val) {
+            console.log("PromiseImpl bar.rejected:", val === "ok");
+        });
+    </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>
